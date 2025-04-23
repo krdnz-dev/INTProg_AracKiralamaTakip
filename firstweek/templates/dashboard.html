@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Araç Seçimi{% endblock %}
+
+{% block content %}
+<h2>Araç Seçimi ve Tarih Aralığı</h2>
+
+<form action="/confirmation" method="POST">
+    <div class="mb-3">
+        <label for="car" class="form-label">Araç Seçin</label>
+        <select class="form-select" id="car" name="car" required>
+            <option value="" disabled selected>Bir Araç Seçiniz</option>
+            <option value="Mercedes-Benz">Mercedes-Benz</option>
+            <option value="BMW">BMW</option>
+            <option value="Toyota">Toyota</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="start_date" class="form-label">Başlangıç Tarihi</label>
+        <input type="date" class="form-control" id="start_date" name="start_date" required>
+    </div>
+    <div class="mb-3">
+        <label for="end_date" class="form-label">Bitiş Tarihi</label>
+        <input type="date" class="form-control" id="end_date" name="end_date" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Devam Et</button>
+</form>
+{% endblock %}
