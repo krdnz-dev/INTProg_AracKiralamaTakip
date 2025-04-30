@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Araç Kiralama - Ana Sayfa{% endblock %}
+
+{% block content %}
+<h2>Araba Kiralama</h2>
+<form action="/login" method="GET">
+    <div class="mb-3">
+        <label for="car" class="form-label">Araba Seçin</label>
+        <select class="form-select" id="car" name="car" required>
+            <option value="" disabled selected>Araba Seçiniz</option>
+            <option value="Mercedes-Benz">Mercedes-Benz</option>
+            <option value="BMW">BMW</option>
+            <option value="Toyota">Toyota</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="date" class="form-label">Tarih Seçin</label>
+        <input type="date" class="form-control" id="date" name="date" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Giriş Yap ve Devam Et</button>
+</form>
+{% endblock %}
