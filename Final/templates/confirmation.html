@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Seçim Onayı{% endblock %}
+
+{% block content %}
+<h2>Seçiminizi Onaylayın</h2>
+
+<p><strong>Seçtiğiniz Araç:</strong> {{ car }}</p>
+<p><strong>Başlangıç Tarihi:</strong> {{ start_date }}</p>
+<p><strong>Bitiş Tarihi:</strong> {{ end_date }}</p>
+<p><strong>Toplam Fiyat:</strong> {{ toplam_fiyat }} ₺</p>
+
+<form action="/payment" method="POST">
+    <input type="hidden" name="car" value="{{ car }}">
+    <input type="hidden" name="start_date" value="{{ start_date }}">
+    <input type="hidden" name="end_date" value="{{ end_date }}">
+    <input type="hidden" name="toplam_fiyat" value="{{ toplam_fiyat }}">
+    <button type="submit" class="btn btn-success">Devam Et ve Ödeme Yap</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Kiralama Listesi{% endblock %}
+
+{% block content %}
+<h2 class="mb-3">✅ Aktif Kiralamalar</h2>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Kullanıcı</th>
+            <th>Araç</th>
+            <th>Başlangıç</th>
+            <th>Bitiş</th>
+            <th>Fiyat</th>
+            <th>Sil</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for k in aktif_kiralamalar %}
+        <tr>
+            <td>{{ k[1] }}</td>
+            <td>{{ k[2] }}</td>
+            <td>{{ k[3] }}</td>
+            <td>{{ k[4] }}</td>
+            <td>{{ k[5] }} ₺</td>
+            <td><a href="/kiralama-sil/{{ k[0] }}" class="btn btn-danger btn-sm">Sil</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2 class="mt-5 mb-3">⛔ Geçmiş Kiralamalar</h2>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Kullanıcı</th>
+            <th>Araç</th>
+            <th>Başlangıç</th>
+            <th>Bitiş</th>
+            <th>Fiyat</th>
+            <th>Sil</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for k in gecmis_kiralamalar %}
+        <tr>
+            <td>{{ k[1] }}</td>
+            <td>{{ k[2] }}</td>
+            <td>{{ k[3] }}</td>
+            <td>{{ k[4] }}</td>
+            <td>{{ k[5] }} ₺</td>
+            <td><a href="/kiralama-sil/{{ k[0] }}" class="btn btn-danger btn-sm">Sil</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

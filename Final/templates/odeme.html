@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Odeme Sayfası{% endblock %}
+
+{% block content %}
+<h2 class="mb-4 text-center">Ödeme Bilgileri</h2>
+<div class="row">
+  <div class="col-md-6">
+    <form action="/complete" method="POST" id="payment-form">
+      <input type="hidden" name="car" value="{{ car }}">
+      <input type="hidden" name="start_date" value="{{ start_date }}">
+      <input type="hidden" name="end_date" value="{{ end_date }}">
+      <input type="hidden" name="toplam_fiyat" value="{{ toplam_fiyat }}">
+
+      <div class="mb-3">
+        <label for="card_number" class="form-label">Kart Numarası</label>
+        <input type="text" class="form-control" id="card_number" maxlength="16" placeholder="1234 5678 9012 3456" required>
+      </div>
+      <div class="mb-3">
+        <label for="card_name" class="form-label">Kart Üzerindeki İsim</label>
+        <input type="text" class="form-control" id="card_name" placeholder="Ad Soyad" required>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label for="expiry" class="form-label">Son Kullanma Tarihi</label>
+          <input type="text" class="form-control" id="expiry" maxlength="5" placeholder="MM/YY" required>
+        </div>
+        <div class="col">
+          <label for="cvc" class="form-label">CVC</label>
+          <input type="text" class="form-control" id="cvc" maxlength="3" placeholder="123" required>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success mt-4 w-100">Onayla ve Ödeme Yap</button>
+    </form>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card p-4 bg-dark text-white">
+      <div class="mb-3">Kredi Kartı</div>
+      <div class="mb-2">Kart No: <span id="live_card_number">#### #### #### ####</span></div>
+      <div class="mb-2">Kart Sahibi: <span id="live_card_name">Ad Soyad</span></div>
+      <div class="mb-2">SKT: <span id="live_expiry">MM/YY</span> | CVC: <span id="live_cvc">---</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('card_number').addEventListener('input', function(e) {
+    document.getElementById('live_card_number').textContent = e.target.value || '#### #### #### ####';
+  });
+  document.getElementById('card_name').addEventListener('input', function(e) {
+    document.getElementById('live_card_name').textContent = e.target.value || 'Ad Soyad';
+  });
+  document.getElementById('expiry').addEventListener('input', function(e) {
+    document.getElementById('live_expiry').textContent = e.target.value || 'MM/YY';
+  });
+  document.getElementById('cvc').addEventListener('input', function(e) {
+    document.getElementById('live_cvc').textContent = e.target.value || '---';
+  });
+</script>
+{% endblock %}

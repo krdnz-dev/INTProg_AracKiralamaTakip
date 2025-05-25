@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Araç Listesi{% endblock %}
+
+{% block content %}
+<h2>Araç Listesi</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Model</th>
+            <th>Plaka</th>
+            <th>Durum</th>
+            <th>Fiyat</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for arac in araclar %}
+        <tr>
+            <td>{{ arac[0] }}</td>
+            <td>{{ arac[1] }}</td>
+            <td>{{ arac[2] }}</td>
+            <td>{{ arac[3] }}</td>
+            <td>{{ arac[4] }}</td>
+            <td>
+                {% if session.username == 'admin' %}
+                    <a href="/arac-sil/{{ arac[0] }}" class="btn btn-danger btn-sm">Sil</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

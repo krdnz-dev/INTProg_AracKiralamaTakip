@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Araç Seçimi{% endblock %}
+
+{% block content %}
+<h2>Araç Seçimi ve Tarih Aralığı</h2>
+
+<form method="GET" class="mb-4 d-flex">
+    <input type="text" name="model" class="form-control me-2" placeholder="Araç modeli ara..." value="{{ request.args.get('model', '') }}">
+    <button type="submit" class="btn btn-outline-primary">Ara</button>
+</form>
+
+<form action="/dashboard" method="POST">
+  <div class="row">
+    {% for arac in araclar %}
+    <div class="col-md-4">
+      <div class="card mb-4 shadow-sm">
+        <img src="{{ arac[5] if arac[5] else 'https://via.placeholder.com/400x200.png?text=Gorsel+Yok' }}" 
+             class="card-img-top" alt="Araç Görseli" style="height: 200px; object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title">{{ arac[1] }}</h5>
+          <p class="card-text">Fiyat: {{ arac[4] }} ₺ / gün</p>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="car" id="car{{ loop.index }}" value="{{ arac[1] }}" required>
+            <label class="form-check-label" for="car{{ loop.index }}">
+              Bu aracı seç
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+
+  <div class="mb-3">
+    <label for="start_date" class="form-label">Başlangıç Tarihi</label>
+    <input type="date" class="form-control" id="start_date" name="start_date" required>
+  </div>
+  <div class="mb-3">
+    <label for="end_date" class="form-label">Bitiş Tarihi</label>
+    <input type="date" class="form-control" id="end_date" name="end_date" required>
+  </div>
+
+  <button type="submit" class="btn btn-primary w-100">Devam Et</button>
+</form>
+{% endblock %}

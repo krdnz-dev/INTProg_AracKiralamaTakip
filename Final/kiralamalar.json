@@ -1,0 +1,30 @@
+[
+    {
+        "kullanici": "polat",
+        "arac": "Mercedes-Benz S600",
+        "baslangic_tarihi": "2025-05-25",
+        "bitis_tarihi": "2025-05-27",
+        "toplam_fiyat": 3600.0
+    },
+    {
+        "kullanici": "Zeynep",
+        "arac": "Porsche",
+        "baslangic_tarihi": "2025-05-25",
+        "bitis_tarihi": "2025-05-28",
+        "toplam_fiyat": 7500.0
+    },
+    {
+        "kullanici": "Ömer",
+        "arac": "Opel Vectra",
+        "baslangic_tarihi": "2025-05-25",
+        "bitis_tarihi": "2025-05-31",
+        "toplam_fiyat": 5100.0
+    },
+    {
+        "kullanici": "Ayşe",
+        "arac": "Renault Clio",
+        "baslangic_tarihi": "2025-05-25",
+        "bitis_tarihi": "2025-05-25",
+        "toplam_fiyat": 700.0
+    }
+]

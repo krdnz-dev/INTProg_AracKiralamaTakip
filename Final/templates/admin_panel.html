@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Paneli{% endblock %}
+
+{% block content %}
+<h2>Admin Paneli</h2>
+
+<h4>Yeni Araç Ekle</h4>
+<form method="POST">
+  <div class="mb-3">
+    <input type="text" class="form-control" name="model" placeholder="Model" required>
+  </div>
+  <div class="mb-3">
+    <input type="text" class="form-control" name="plaka" placeholder="Plaka" required>
+  </div>
+  <div class="mb-3">
+    <select class="form-select" name="durum" required>
+      <option value="Müsait">Müsait</option>
+      <option value="Kirada">Kirada</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <input type="number" step="0.01" class="form-control" name="fiyat" placeholder="Fiyat" required>
+  </div>
+  <div class="mb-3">
+    <input type="text" class="form-control" name="image_url" placeholder="Araç Görseli (Resim linki)">
+  </div>
+  <button type="submit" class="btn btn-success">Araç Ekle</button>
+</form>
+
+
+<hr>
+
+<h4>Mevcut Araçlar</h4>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Model</th>
+      <th>Plaka</th>
+      <th>Durum</th>
+      <th>Fiyat</th>
+      <th>İşlem</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for arac in araclar %}
+    <tr>
+      <td>{{ arac[0] }}</td>
+      <td>{{ arac[1] }}</td>
+      <td>{{ arac[2] }}</td>
+      <td>{% if arac[3] == 'Kirada' %}
+    <a href="/arac-durum-guncelle/{{ arac[0] }}" class="btn btn-warning btn-sm">Müsait Yap</a>
+  {% else %}
+    <span class="text-success">Müsait</span>
+  {% endif %}</td>
+      <td>{{ arac[4] }}</td>
+      <td>
+        <a href="/admin-arac-sil/{{ arac[0] }}" class="btn btn-danger btn-sm">Sil</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

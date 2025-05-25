@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Kullanıcılar{% endblock %}
+
+{% block content %}
+<h2>Kayıtlı Kullanıcılar</h2>
+
+<table class="table table-striped table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Kullanıcı Adı</th>
+            <th>Şifre</th>
+            <th>E-posta</th>
+            <th>Telefon</th>
+            <th>İşlem</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for kullanici in kullanicilar %}
+        <tr>
+            <td>{{ kullanici[0] }}</td> 
+            <td>{{ kullanici[1] }}</td> 
+            <td>{{ kullanici[2] }}</td>  
+            <td>{{ kullanici[3] }}</td>  
+            <td>
+                {% if kullanici[0] != 'admin' %}
+                    <a href="/kullanici-sil/{{ kullanici[0] }}" class="btn btn-danger btn-sm">Sil</a>
+                {% else %}
+                    <span class="text-muted">Admin hesabı</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

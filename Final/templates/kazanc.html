@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Kazanç Raporu{% endblock %}
+
+{% block content %}
+
+
+<h3>✅ Aktif Kiralamalar</h3>
+<table class="table table-bordered table-striped mb-5">
+    <thead>
+        <tr>
+            <th>Kullanıcı</th>
+            <th>Araç</th>
+            <th>Başlangıç</th>
+            <th>Bitiş</th>
+            <th>Fiyat</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for k in aktif_kiralamalar %}
+        <tr>
+            <td>{{ k[1] }}</td>
+            <td>{{ k[2] }}</td>
+            <td>{{ k[3] }}</td>
+            <td>{{ k[4] }}</td>
+            <td>{{ k[5] }} ₺</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h3>⛔ Geçmiş Kiralamalar</h3>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Kullanıcı</th>
+            <th>Araç</th>
+            <th>Başlangıç</th>
+            <th>Bitiş</th>
+            <th>Fiyat</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for k in gecmis_kiralamalar %}
+        <tr>
+            <td>{{ k[1] }}</td>
+            <td>{{ k[2] }}</td>
+            <td>{{ k[3] }}</td>
+            <td>{{ k[4] }}</td>
+            <td>{{ k[5] }} ₺</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<br><br>
+<h2 class="mb-3">💰 Kazanç Özeti</h2>
+<ul class="list-group mb-4">
+    <li class="list-group-item">⛔Geçmiş Kiralama Geliri: <strong>{{ gecmis_gelir }} ₺</strong></li>
+    <li class="list-group-item">✅Aktif Kiralama Geliri: <strong>{{ aktif_gelir }} ₺</strong></li>
+    <li class="list-group-item list-group-item-success">Toplam Gelir: <strong>{{ toplam }} ₺</strong></li>
+</ul>
+
+{% endblock %}
