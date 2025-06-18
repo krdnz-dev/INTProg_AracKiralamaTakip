@@ -13,3 +13,7 @@ Kullanılanlar
 - Python (Flask)
 - HTML / CSS (Bootstrap)
 - SQLite
+
+Admin Girişi
+-Kullanıcı Adı: admin
+-Şifre: 1234
