@@ -281,31 +281,42 @@ def kiralama_sil(id):
     conn.close()
     return redirect("/kiralama-listesi")
 
-@app.route('/json-veri-aktar')
-def json_veri_aktar():
+
+@app.route("/json-export")
+def json_export():
     if session.get('username') != 'admin':
         return "Bu işlem sadece admin tarafından yapılabilir.", 403
 
     conn = sqlite3.connect("database.db")
     cursor = conn.cursor()
+
     cursor.execute("SELECT kullanici, arac, baslangic_tarihi, bitis_tarihi, toplam_fiyat FROM kiralamalar")
-    kiralamalar = cursor.fetchall()
+    veriler = cursor.fetchall()
     conn.close()
 
-    kiralama_listesi = []
-    for k in kiralamalar:
-        kiralama_listesi.append({
-            "kullanici": k[0],
-            "arac": k[1],
-            "baslangic_tarihi": k[2],
-            "bitis_tarihi": k[3],
-            "toplam_fiyat": k[4]
+    json_data = {}
+    for kullanici, arac, baslangic, bitis, fiyat in veriler:
+        if kullanici not in json_data:
+            json_data[kullanici] = []
+        json_data[kullanici].append({
+            "arac": arac,
+            "baslangic_tarihi": baslangic,
+            "bitis_tarihi": bitis,
+            "toplam_fiyat": fiyat
         })
 
-    with open("kiralamalar.json", "w", encoding="utf-8") as f:
-        json.dump(kiralama_listesi, f, ensure_ascii=False, indent=4)
+    try:
+        with open("kiralamalar.json", "w", encoding="utf-8") as f:
+            json.dump(json_data, f, ensure_ascii=False, indent=4)
+    except:
+        pass 
 
-    return "Kiralama verileri JSON formatında 'kiralamalar.json' dosyasına başarıyla aktarıldı."
+    return app.response_class(
+        response=json.dumps(json_data, ensure_ascii=False, indent=4),
+        mimetype='application/json'
+    )
+
+
 
 @app.route('/kazanc')
 def kazanc_raporu():
